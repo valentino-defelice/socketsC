@@ -36,7 +36,7 @@ echoServAddr.sin_port = htons(1111);
 		DieWithError("connect() failed");
 	printf("connect\n");
 
-	if(send(clientSock, echoString, echoStringLen, 0) != echoStringLen)
+	if(send(clientSock, MSGSEND, sizeof(MSGSEND), 0) < 0)
 		DieWithError("send() sent a different number of the bytes than expected");
 	printf("send\n");
 
