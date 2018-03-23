@@ -16,7 +16,7 @@ void main() {
 int clientSock, servSock, recvMsgSize, clntLen, echoStringLen;
 struct sockaddr_in echoServAddr, echoClntAddr;
 
-char echoString[RCVBUFSIZE] = "hola";
+char echoString[RCVBUFSIZE];
 char echoBuffer[RCVBUFSIZE];
 
 echoServAddr.sin_family = AF_INET;
@@ -36,16 +36,18 @@ echoServAddr.sin_port = htons(1111);
 		DieWithError("connect() failed");
 	printf("connect\n");
 
-	if(send(clientSock, MSGSEND, sizeof(MSGSEND), 0) < 0)
-		DieWithError("send() sent a different number of the bytes than expected");
-	printf("send\n");
+	for(;;){
+		printf("Yo: ");
+		fgets(echoString, sizeof(echoString), stdin);
+		
+		if(send(clientSock, echoString, RCVBUFSIZE, 0) < 0)
+			DieWithError("send() sent a different number of the bytes than expected");
+		printf("✓✓\n");
 
-	if((recvMsgSize = recv(clientSock, echoBuffer, RCVBUFSIZE, 0)) < 0)
-		DieWithError("send() sent a different number of the bytes than expected");
-	printf("recv\n");
-
-	printf("%s\n", echoBuffer);
-
+		if((recvMsgSize = recv(clientSock, echoBuffer, RCVBUFSIZE, 0)) < 0)
+			DieWithError("send() sent a different number of the bytes than expected");
+		printf("Servidor: %s \n", echoBuffer);
+	}
 	/*for (;;){
 		clntLen = sizeof(echoClntAddr);
 
