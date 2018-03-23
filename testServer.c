@@ -34,40 +34,36 @@ echoServAddr.sin_port = htons(echoServPort);
 		DieWithError("listen() failed");
 	printf("listen\n");
 
-	if((clientSock = accept(servSock, (struct sockaddr *) &echoClntAddr, &clntLen)) < 0)
-		DieWithError("accept() failed");
-	printf("accept\n");
-
-	if((recvMsgSize = recv(clientSock, echoBuffer, RCVBUFSIZE, 0)) <0 )
-		DieWithError("recv() failed");
-	printf("recv\n");
-
-	while (recvMsgSize > 0){
+	/*while (recvMsgSize > 0){
 		if (send(clientSock, echoBuffer, recvMsgSize, 0) != recvMsgSize)
 			DieWithError("send() failed");
 	printf("send\n");
 		if ((recvMsgSize = recv(clientSock, echoBuffer, RCVBUFSIZE, 0)) < 0)
 			DieWithError("recv() failed");
 	printf("recv\n");
-	}
+	}*/
 
 
-	/*for(;;) {
+	for(;;) {
 		clntLen = sizeof(echoClntAddr);
 
 		if((clientSock = accept(servSock, (struct sockaddr *) &echoClntAddr, &clntLen)) < 0)
 			DieWithError("accept() failed");
+			printf("accept\n");
 
 		if((recvMsgSize = recv(clientSock, echoBuffer, RCVBUFSIZE, 0)) < 0)
 			DieWithError("recv() failed");
-
+			printf("recv\n");
+			
 		while(recvMsgSize > 0) {
 			if (send(clientSock, echoBuffer, recvMsgSize, 0) != recvMsgSize)
 				DieWithError("send() failed");
+				printf("send\n");
 			if((recvMsgSize = recv(clientSock, echoBuffer, RCVBUFSIZE, 0)) < 0)
 				DieWithError("recv() failed");
-		} */
+		} 
 	close(clientSock);
+	}
 	return;
 
 }
