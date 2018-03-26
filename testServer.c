@@ -55,7 +55,22 @@ echoServAddr.sin_port = htons(echoServPort);
 			DieWithError("recv() failed");
 			printf("recv\n");
 			
-		while(recvMsgSize > 0) {
+		/* while(recvMsgSize > 0) {
+			printf("Cliente: %s\n",echoBuffer);
+			printf("Yo: \n");
+			fgets(echoBuffer, sizeof(echoBuffer), stdin);
+
+			if (send(clientSock, echoBuffer, recvMsgSize, 0) != recvMsgSize)
+				DieWithError("send() failed");
+				printf("send\n");
+			if((recvMsgSize = recv(clientSock, echoBuffer, RCVBUFSIZE, 0)) < 0)
+				DieWithError("recv() failed");
+		} */
+		for(;;) {
+			printf("Cliente: %s\n",echoBuffer);
+			printf("Yo: \n");
+			fgets(echoBuffer, sizeof(echoBuffer), stdin);
+
 			if (send(clientSock, echoBuffer, recvMsgSize, 0) != recvMsgSize)
 				DieWithError("send() failed");
 				printf("send\n");
