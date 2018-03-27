@@ -68,7 +68,7 @@ echoServAddr.sin_port = htons(echoServPort);
 		} */
 		for(;;) {
 			printf("Cliente: %s\n",echoBuffer);
-			printf("Yo: \n");
+			printf("Yo: ");
 			fgets(echoBuffer, sizeof(echoBuffer), stdin);
 
 			if (send(clientSock, echoBuffer, recvMsgSize, 0) != recvMsgSize)
