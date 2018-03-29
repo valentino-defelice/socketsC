@@ -1,4 +1,4 @@
-# This project it's a simple Echo Server - Client using C socket API.
+# This project it's a simple FTP Server & Client using C socket API.
 
 ## INSTRUCTIONS
 ### You only need compile Server & Client, then run in separatly terminal.
@@ -12,7 +12,7 @@ To compile:
 and run it, FIRST run the server.
 
 ```
-	$./Server &
-	$./Client
+	$./Server <PORT> &
+	$./Client <IP SERVER> <PORT>
 
 ```
